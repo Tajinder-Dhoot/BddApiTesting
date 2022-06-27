@@ -8,6 +8,13 @@ import io.cucumber.junit.Cucumber;
 @CucumberOptions(
 
 		features = "src/test/java/features",
+				
+		plugin = {
+				"pretty",
+				"html:target/test-output", 
+				"json:target/cucumber.json", 
+				"junit:target/cucumber.xml"
+			},
 		
 		monochrome = true,
 		
@@ -15,10 +22,8 @@ import io.cucumber.junit.Cucumber;
 		
 		tags = "@AddPlaceApi",
 
-		glue = { "stepDefinitions" },
+		glue = { "stepDefinitions" }
 		
-		publish = true
-
 )
 
 public class TestRunner {
