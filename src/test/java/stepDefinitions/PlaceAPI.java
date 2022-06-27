@@ -39,6 +39,12 @@ public class PlaceAPI {
 		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(ContentType.JSON).build();
 	}
+
+	@Given("Delete Payload")
+	public void delete_payload() {
+
+	
+	}
 	
 	@When("user calls API {string} with {string} http request")
 	public void user_calls_API_with_http_request(String resource, String httpMethod) {
@@ -55,16 +61,6 @@ public class PlaceAPI {
 		else if(httpMethod.equalsIgnoreCase("get")) {
 			response = requestSpecification
 					.when().get(resourceAPI.getResource())
-					.then().spec(responseSpecification).extract().response();
-		}
-		else if(httpMethod.equalsIgnoreCase("patch")) {
-			response = requestSpecification
-					.when().patch(resourceAPI.getResource())
-					.then().spec(responseSpecification).extract().response();
-		}
-		else if(httpMethod.equalsIgnoreCase("delete")) {
-			response = requestSpecification
-					.when().delete(resourceAPI.getResource())
 					.then().spec(responseSpecification).extract().response();
 		}
 

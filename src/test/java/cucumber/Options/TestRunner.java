@@ -18,7 +18,7 @@ import io.cucumber.junit.Cucumber;
 		
 		monochrome = true,
 		
-//		dryRun =true,
+		dryRun =true,
 		
 		tags = "@AddPlaceApi",
 
