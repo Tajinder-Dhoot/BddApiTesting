@@ -30,6 +30,7 @@ public class PlaceAPI {
 	Response response;
 	Utils utils = new Utils();
 	TestDataBuild data = new TestDataBuild();
+	static String place_id;
 		
 	@Given("Add Place Payload with {string} {string} {string}")
 	public void add_place_payload_with(String name, String address, String website) throws IOException {
@@ -38,12 +39,6 @@ public class PlaceAPI {
 				.body(data.addPlacePayload(name, address, website));
 		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(ContentType.JSON).build();
-	}
-
-	@Given("Delete Payload")
-	public void delete_payload() {
-
-	
 	}
 	
 	@When("user calls API {string} with {string} http request")
@@ -55,13 +50,13 @@ public class PlaceAPI {
 		
 		if(httpMethod.equalsIgnoreCase("post")) {
 			response = requestSpecification
-					.when().post(resourceAPI.getResource())
-					.then().spec(responseSpecification).extract().response();
+					.when().post(resourceAPI.getResource());
+//					.then().spec(responseSpecification).extract().response();
 		}
 		else if(httpMethod.equalsIgnoreCase("get")) {
 			response = requestSpecification
-					.when().get(resourceAPI.getResource())
-					.then().spec(responseSpecification).extract().response();
+					.when().get(resourceAPI.getResource());
+//					.then().spec(responseSpecification).extract().response();
 		}
 
 		String responseString=response.asString();
@@ -86,11 +81,11 @@ public class PlaceAPI {
 	@Then("Verify place_id created maps to {string} using {string}")
 	public void verify_place_id_created_maps_to_using(String expectedName, String resource) throws IOException {
 
-		String placeId = utils.getJsonPath(response, "place_id");
+		place_id = utils.getJsonPath(response, "place_id");
 		
 		//getAPI request specification
 		requestSpecification = given().spec(utils.requestSpecification())
-				.queryParam("place_id", placeId);
+				.queryParam("place_id", place_id);
 		user_calls_API_with_http_request(resource, "get");
 		
 		//verify name in getPlaceAPI response is what is expected
@@ -98,7 +93,28 @@ public class PlaceAPI {
 		assertEquals(expectedName, actualName);
 	}
 	
+	@Given("Delete Payload")
+	public void delete_payload() throws IOException {
+
+		requestSpecification = given().spec(utils.requestSpecification())
+								.body(data.deletePlacePayload(place_id));
+		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(ContentType.JSON).build();
+	}
+	
+	public void compareString(String a, String b) {
+		if(a.equals(b)) {
+			System.out.println("matches");
+		} else {
+			System.out.println("do not match");
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		PlaceAPI place = new PlaceAPI();
+		String a = "f92dbd90060c5fd422349f844ea904a0918c9c9392f3277543ce2bfb0aab941950bb4174d9b6e2ea84cd48d2940111b83ffcc2e3acf5a5b2004277105fd22be9";
+		String b = "f92dbd90060c5fd422349f844ea904a0918c9c9392f3277543ce2bfb0aab941950bb4174d9b6e2ea84cd48d2940111b83ffcc2e3acf5a5b2004277105fd22be9";
+		place.compareString(a, b);
 	}
 }

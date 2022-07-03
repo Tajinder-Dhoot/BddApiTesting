@@ -13,8 +13,8 @@ Feature: Validations for Place API
 
   	Examples: 
       | API  					| status_code 	|	name						|	address							|	website						|
-      | addPlaceAPI 	|     200 			|	Tajinder Singh	|	Panjab, Khalistan		|	www.Khalistan.com	|
-      #| addPlaceAPI 	|     200 			|	Tajinder Singh	|	Dhoot, Panjab				|	www.panjab.com		|
+      #| addPlaceAPI 	|     200 			|	Tajinder Singh	|	Panjab, Khalistan		|	www.Khalistan.com	|
+      | addPlaceAPI 	|     200 			|	Tajinder Singh	|	Dhoot, Panjab				|	www.panjab.com		|
       
   @DeletePlaceApi
   Scenario Outline: Verify that a place is being deleted using DeletePlaceAPI

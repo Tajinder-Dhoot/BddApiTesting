@@ -2,14 +2,14 @@ package pojo;
 
 public class DeletePlace {
 	
-	private String placeId;
+	private String place_id;
 
 	
-	public String getPlaceId() {
-		return placeId;
+	public String getPlace_id() {
+		return place_id;
 	}
 	
-	public void setPlaceId(String placeId) {
-		this.placeId = placeId;
+	public void setPlace_id(String place_id) {
+		this.place_id = place_id;
 	}
 }
