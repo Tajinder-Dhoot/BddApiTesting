@@ -27,5 +27,4 @@ public enum APIResources {
 	public String getResource() {
 		return resource;
 	}
-
 }

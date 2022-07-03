@@ -109,12 +109,4 @@ public class PlaceAPI {
 			System.out.println("do not match");
 		}
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PlaceAPI place = new PlaceAPI();
-		String a = "f92dbd90060c5fd422349f844ea904a0918c9c9392f3277543ce2bfb0aab941950bb4174d9b6e2ea84cd48d2940111b83ffcc2e3acf5a5b2004277105fd22be9";
-		String b = "f92dbd90060c5fd422349f844ea904a0918c9c9392f3277543ce2bfb0aab941950bb4174d9b6e2ea84cd48d2940111b83ffcc2e3acf5a5b2004277105fd22be9";
-		place.compareString(a, b);
-	}
 }
